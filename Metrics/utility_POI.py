@@ -39,6 +39,7 @@ def main(df_anon, df_original):
     df_orig['ID']= df_orig['ID'].astype('string')
     df_anon['DateTime']= df_anon['DateTime'].astype('datetime64[ns]')
     df_anon['ID']= df_anon['ID'].astype('string')
+    df_anon['ID']=df_orig['ID']
 
     #Pre-treatment of original dataframe
     df_orig['lat']=df_orig['lat'].round(size)
@@ -68,7 +69,7 @@ def main(df_anon, df_original):
     df_orig2 = df_orig2.groupby(by=['ID', 'Week', 'DatetimeIndex']).head(1).reset_index(drop=True)
     
     #Pre-treatment of original dataframe
-    df_anon['ID']=df_orig['ID']
+
     df_anon['lat']=df_anon['lat'].round(size)
     df_anon['lon']=df_anon['lon'].round(size)
     df_anon['Hour'] = df_anon['DateTime'].dt.hour

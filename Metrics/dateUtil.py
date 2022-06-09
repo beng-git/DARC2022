@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def main(df_anon, df_original):
+def main(df_anon, df_original, params, nb_orig_lines):
     df_orig = df_original.copy()
     df_anon = df_anon.copy()
 
@@ -9,7 +9,9 @@ def main(df_anon, df_original):
     df_date_utility['DiffDate'] = abs(df_date_utility['DayOfTheWeek_orig']-df_date_utility['DayOfTheWeek_anon'])
     #pour tout changement de semaine l'utilite doit etre 0 
     df_date_utility.loc[~(df_date_utility['Week_orig']==df_date_utility['Week_anon']),'DiffDate']=7
+    
     df_date_utility['date_util']= 1- df_date_utility['DiffDate']/7
-
-    score = df_date_utility["date_util"].mean().round(3)
+    
+    score = df_date_utility["date_util"].sum()/nb_original_lines
+    
     return score

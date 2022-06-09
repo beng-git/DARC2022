@@ -21,9 +21,12 @@ pt = 0.1
 # 0.5: 10% des cellules les plus visités doivent être présente dans 10% des cellules du
 # fichier anonymisé.
 
-def main(df_anon, df_original):
-    size = 2
-    pt = 0.1
+def main(df_anon, df_original, params, nb_orig_lines):
+    #Define global variable
+    global size
+    size = params['size']
+    global pt
+    pt = params['pt']
 
     df = df_anon.copy()
     df_orig = df_original.copy()

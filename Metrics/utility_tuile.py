@@ -1,7 +1,7 @@
 import pandas as pd
 
-def main(df_anon, df_original):
-    size = 2
+def main(df_anon, df_original, params, nb_orig_lines):
+    size = params['size']
 
     df = df_anon.copy()
     df_orig = df_original.copy()
